@@ -12,6 +12,7 @@
 		841D4DB71EDD5D17003F047D /* DIGifPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841D4DB61EDD5D17003F047D /* DIGifPopupViewController.swift */; };
 		841D4DB91EDD6134003F047D /* DITapableViewcontroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841D4DB81EDD6134003F047D /* DITapableViewcontroller.swift */; };
 		841D4DBB1EDD7000003F047D /* UIImage_Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841D4DBA1EDD7000003F047D /* UIImage_Extension.swift */; };
+		841D4DBD1EDD75B8003F047D /* DIIWaitViewConroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841D4DBC1EDD75B8003F047D /* DIIWaitViewConroller.swift */; };
 		8487B8481ED761EC00B868FA /* DILoadImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8487B8471ED761EC00B868FA /* DILoadImageViewController.swift */; };
 		8487B84A1ED79D3000B868FA /* DIImageItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8487B8491ED79D3000B868FA /* DIImageItem.swift */; };
 		9E93A90D1E97676D00439DC6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E93A90C1E97676D00439DC6 /* AppDelegate.swift */; };
@@ -29,6 +30,7 @@
 		841D4DB61EDD5D17003F047D /* DIGifPopupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DIGifPopupViewController.swift; sourceTree = "<group>"; };
 		841D4DB81EDD6134003F047D /* DITapableViewcontroller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DITapableViewcontroller.swift; sourceTree = "<group>"; };
 		841D4DBA1EDD7000003F047D /* UIImage_Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImage_Extension.swift; sourceTree = "<group>"; };
+		841D4DBC1EDD75B8003F047D /* DIIWaitViewConroller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DIIWaitViewConroller.swift; sourceTree = "<group>"; };
 		8487B8471ED761EC00B868FA /* DILoadImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DILoadImageViewController.swift; sourceTree = "<group>"; };
 		8487B8491ED79D3000B868FA /* DIImageItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DIImageItem.swift; sourceTree = "<group>"; };
 		9E93A9091E97676C00439DC6 /* doit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = doit.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -101,6 +103,7 @@
 				9E93A90E1E97676D00439DC6 /* DILoginViewController.swift */,
 				841D4DB81EDD6134003F047D /* DITapableViewcontroller.swift */,
 				9E93A91E1E9ACEF100439DC6 /* DICollectionViewController.swift */,
+				841D4DBC1EDD75B8003F047D /* DIIWaitViewConroller.swift */,
 				8487B8491ED79D3000B868FA /* DIImageItem.swift */,
 				8413948A1ED75EC900415736 /* DIAddImageViewController.swift */,
 				841D4DB61EDD5D17003F047D /* DIGifPopupViewController.swift */,
@@ -252,6 +255,7 @@
 				8487B84A1ED79D3000B868FA /* DIImageItem.swift in Sources */,
 				9E93A90D1E97676D00439DC6 /* AppDelegate.swift in Sources */,
 				841D4DBB1EDD7000003F047D /* UIImage_Extension.swift in Sources */,
+				841D4DBD1EDD75B8003F047D /* DIIWaitViewConroller.swift in Sources */,
 				841394891ED62DB800415736 /* DINetworkManager.swift in Sources */,
 				841D4DB71EDD5D17003F047D /* DIGifPopupViewController.swift in Sources */,
 			);

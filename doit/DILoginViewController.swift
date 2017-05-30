@@ -34,6 +34,7 @@ class DILoginViewController: DILoadImageViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        self.startWait()
     }
     
     override func viewDidAppear(_ animated: Bool)
@@ -43,9 +44,11 @@ class DILoginViewController: DILoadImageViewController
         guard nil == UserDefaults.standard.value(forKey:kTokenKey)
         else
         {
+            self.endWait()
             self.performSegue(withIdentifier:kShowGalerySegueID, sender:self)
             return
         }
+        self.endWait()
     }
     
     override func viewWillAppear(_ animated: Bool)
@@ -164,6 +167,8 @@ class DILoginViewController: DILoadImageViewController
     {
         if self.canPerformLogin()
         {
+            self.onTap(self) // remove keyboard
+            self.startWait()
             DINetworkManager.loginWithName(self.userNameTextField.text!, anEmail:self.emailTextFiled.text!, aPassword:self.passwordTextFiled.text!, anImageURL:self.avaURL!, completion:
             { (token:String?) in
                 if let theToken = token
@@ -171,6 +176,7 @@ class DILoginViewController: DILoadImageViewController
                     UserDefaults.standard.set(theToken, forKey:kTokenKey)
                     self.performSegue(withIdentifier:kShowGalerySegueID, sender:sender)
                 }
+                self.endWait()
             })
         }
     }

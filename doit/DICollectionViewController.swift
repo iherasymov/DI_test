@@ -51,6 +51,8 @@ class DICollectionViewController: UICollectionViewController
                       height:self.view.bounds.size.height)
     }
     
+    var waitForLocationSemaphore:DispatchSemaphore?
+    
 //MARK: Override
     override func viewDidLoad()
     {
@@ -79,9 +81,11 @@ class DICollectionViewController: UICollectionViewController
             return
         }
         
+        self.startWait()
         DINetworkManager.getGIF(token, weather:weather)
         { (gifURLStr:String?) in
             
+            self.endWait()
             if let pathToGIF = gifURLStr,
                let remoteURL = URL(string:pathToGIF)
             {
@@ -241,19 +245,38 @@ extension DICollectionViewController : DIAddImageViewControllerDelegate
         {
             if let scaledImg = anImage.scaledImage(400)
             {
+                var coordinate:CLLocationCoordinate2D!
+                self.startWait()
                 try UIImagePNGRepresentation(scaledImg)?.write(to:url)
-                if let theToken = UserDefaults.standard.value(forKey:kTokenKey) as? String,
-                    let coordiname = self.locationManager.location?.coordinate
+                if let theToken = UserDefaults.standard.value(forKey:kTokenKey) as? String
                 {
-                    let location = CLLocation(latitude:coordiname.latitude, longitude:coordiname.longitude)
-                    DINetworkManager.postImage(theToken, aFileURL:url, aDescription:description, aHashtag:hashtag, aLocation:location, completion:
-                    {(success:Bool) in
-                        if success
-                        {
-                            self.getAll()
-                            try? FileManager.default.removeItem(at:url)
-                        }
-                    })
+                    let performPostImage =
+                    {
+                        let location = CLLocation(latitude:coordinate.latitude, longitude:coordinate.longitude)
+                        DINetworkManager.postImage(theToken, aFileURL:url, aDescription:description, aHashtag:hashtag, aLocation:location, completion:
+                        {(success:Bool) in
+                            if success
+                            {
+                                self.getAll()
+                                try? FileManager.default.removeItem(at:url)
+                                self.endWait()
+                            }
+                        })
+                    }
+                    
+                    if let theCoordinate = self.locationManager.location?.coordinate
+                    {
+                        coordinate = theCoordinate
+                        performPostImage()
+                    }
+                    else
+                    {
+                        self.waitForLocationSemaphore = DispatchSemaphore(value:0)
+                        _ = self.waitForLocationSemaphore?.wait(timeout:.distantFuture)
+                        coordinate = self.locationManager.location?.coordinate
+                        performPostImage()
+                    }
+                    
                 }
             }
         }
@@ -274,7 +297,7 @@ extension DICollectionViewController : CLLocationManagerDelegate
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error)
     {
-        print(error.localizedDescription)
+        self.waitForLocationSemaphore?.signal()
     }
 }
 
